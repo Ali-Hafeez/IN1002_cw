@@ -21,13 +21,10 @@ public class Solver {
     /* You answers go below here */
 
     // Part A.1
-    // Worst case complexity : ???
-    // Best case complexity : ???
-	/*Fill in the checkClause method. The input is an array representing an
-assignment and an array representing a clause. It must output true if
-the clause is satisfiable. Otherwise it must give false. Give the best and
-worst case complexity in terms of the number of literals in the clause (v).
-*/
+    // Worst case complexity : O(1)
+    // Best case complexity :  O(v), where v is the number of literals in the clause, when we need to iterate
+    //                         through all the literals in the clause and none of them are satisfied by the assignment
+
     public boolean checkClause(int[] assignment, int[] clause) {
         for (int i = 0; i < clause.length; i++) {
             int literal = clause[i];
@@ -46,13 +43,10 @@ worst case complexity in terms of the number of literals in the clause (v).
     }
 
     // Part A.2
-    // Worst case complexity : ???
-    // Best case complexity : ???
-	/*Fill in the checkClauseDatabase method. The input is an array representing an assignment and the clause database. It must output true if
-the assignment satisifies all of the clauses. If one or more of the clauses
-is unsatifiable it must return false. Give the best and worst case complexity in terms of the length of the longest clause (l) and the number of
-clauses (c).
-*/
+    // Worst case complexity :s O(1) when the clause database is empty
+    // Best case complexity : O(cl * maxClauseLength), where cl is the number of clauses in the database
+    //                        and maxClauseLength is the length of the longest clause
+
     public boolean checkClauseDatabase(int[] assignment, int[][] clauseDatabase) {
         for (int i = 0; i < clauseDatabase.length; i++) {
             int[] clause = clauseDatabase[i];
@@ -66,11 +60,7 @@ clauses (c).
     // Part A.3
     // Worst case complexity : ???
     // Best case complexity : ???
-	/* Fill in the checkClausePartial method. The input is an array representing a partial assignment and an array representing a clause. It must
-output 1 if the clause is satisfiable. It must output -1 if the clause is
-unsatisfiable. Otherwise it must output 0. Give the best and worst case
-complexity in terms of the number of literals in the clause (v).
-*/
+
     public int checkClausePartial(int[] partialAssignment, int[] clause) {
         boolean isSatisfied = false;
         boolean hasUnassignedVariable = false;
@@ -98,11 +88,7 @@ complexity in terms of the number of literals in the clause (v).
     // Part A.4
     // Worst case complexity : ???
     // Best case complexity : ???
-	/*Fill in the findUnit method. The input is an array representing a partial
-assignment and an array representing a clause. If there is exactly one
-literal in the clause that is unknown and all other are false then it returns
-the literal that is unknown. Otherwise it returns 0. Give the best and
-worst case complexity in terms of the number of literals in the clause (v).*/
+	
     public int findUnit(int[] partialAssignment, int[] clause) {
         int unknownCount = 0;
         int unitLiteral = 0;
