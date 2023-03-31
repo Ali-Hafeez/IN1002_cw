@@ -58,8 +58,8 @@ public class Solver {
     }
 
     // Part A.3
-    // Worst case complexity : ???
-    // Best case complexity : ???
+// Worst case complexity :  O(1) when the clause contains only one literal, and it is satisfied by the partial assignment
+// Best case complexity :   O(v), where v is the number of literals in the clause
 
     public int checkClausePartial(int[] partialAssignment, int[] clause) {
         boolean isSatisfied = false;
@@ -86,9 +86,9 @@ public class Solver {
     }
 
     // Part A.4
-    // Worst case complexity : ???
-    // Best case complexity : ???
-	
+    // Worst case complexity :  O(1) when the clause contains no unknown literals or it contains exactly one unknown literal that satisfies the clause.
+    // Best case complexity : O(v), where v is the number of literals in the clause
+
     public int findUnit(int[] partialAssignment, int[] clause) {
         int unknownCount = 0;
         int unitLiteral = 0;
