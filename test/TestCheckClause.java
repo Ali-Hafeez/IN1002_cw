@@ -5,8 +5,8 @@ public class TestCheckClause {
     @Test
     public void TestCheckClauseTrue(){
         Solver solver = new Solver();
-        int[] assignment = new int[]{1};
-        int[] clause = new int[] {1};
+        int[] assignment = new int[]{0,1,-1};
+        int[] clause = new int[] {1,2,3};
         boolean result = solver.checkClause(assignment, clause);
 
         Assert.assertTrue(result);
@@ -14,7 +14,7 @@ public class TestCheckClause {
     @Test
     public void TestCheckClauseFalse(){
         Solver solver = new Solver();
-        int[] assignment = new int[]{-1};
+        int[] assignment = new int[]{0,-1};
         int[] clause = new int[] {1};
         boolean result = solver.checkClause(assignment, clause);
         Assert.assertFalse(result);

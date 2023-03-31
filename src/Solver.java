@@ -49,9 +49,16 @@ public class Solver {
 
     public boolean checkClauseDatabase(int[] assignment, int[][] clauseDatabase) {
         for (int i = 0; i < clauseDatabase.length; i++) {
-            int[] clause = clauseDatabase[i];
-            if (!checkClause(assignment, clause)) {
-                return false;
+            for (int j = 0; i < clauseDatabase[i].length; j++) {
+                int[] clause = clauseDatabase[i];
+                int[] clauseArr = new int[]{clauseDatabase[i][j]};
+                if (!checkClause(assignment, clauseArr)) {
+
+                    if (!checkClause(assignment, clause)) {
+                        return false;
+                    }
+                }
+
             }
         }
         return true;
@@ -122,6 +129,7 @@ public class Solver {
     // I think this can solve ????
     int[] checkSat(int[][] clauseDatabase) {
         return null;
+
     }
 
     /*****************************************************************\
