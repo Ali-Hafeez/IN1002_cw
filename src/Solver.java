@@ -93,7 +93,9 @@ public class Solver {
     // Part A.4
     // Worst case complexity :  O(1) when the clause contains no unknown literals or it contains exactly one unknown literal that satisfies the clause.
     // Best case complexity : O(v), where v is the number of literals in the clause
-
+public int returnVal(int value){
+        return value;
+}
     public int findUnit(int[] partialAssignment, int[] clause) {
         int unknownCount = 0;
         int unitLiteral = 0;
@@ -102,19 +104,15 @@ public class Solver {
             boolean isNegated = literal < 0;
             int var = isNegated ? -literal : literal;
             int value = partialAssignment[var - 1];
-            if (value == 0) {
-                if (unknownCount == 0) {
+            if (value == 0 && unknownCount == 0) {
                     unitLiteral = literal;
-                } else {
-                    // more than one unknown literal, not a unit clause
-                    return 0;
-                }
                 unknownCount++;
-            } else if (value == 1 && !isNegated) {
-                // already satisfied, not a unit clause
-                return 0;
-            }
+                }
+
+
+
         }
+
         if (unknownCount == 1) {
             return unitLiteral;
         } else {
@@ -122,6 +120,7 @@ public class Solver {
         }
 
     }
+
 
     // Part B
     // I think this can solve ????
