@@ -50,18 +50,16 @@ public class Solver {
     public boolean checkClauseDatabase(int[] assignment, int[][] clauseDatabase) {
         for (int i = 0; i < clauseDatabase.length; i++) {
             for (int j = 0; i < clauseDatabase[i].length; j++) {
-                int[] clause = clauseDatabase[i];
+               // int[] clause = clauseDatabase[i];
                 int[] clauseArr = new int[]{clauseDatabase[i][j]};
                 if (!checkClause(assignment, clauseArr)) {
-
-                    if (!checkClause(assignment, clause)) {
                         return false;
-                    }
                 }
 
             }
         }
         return true;
+
     }
 
     // Part A.3
