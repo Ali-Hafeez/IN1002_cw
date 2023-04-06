@@ -103,13 +103,18 @@ public class Solver {
             boolean isNegated = literal < 0;
             int var = isNegated ? -literal : literal;
             int value = partialAssignment[var - 1];
-            if (value == 0 && unknownCount == 0) {
+            if (value == 0) {
+                if (unknownCount == 0) {
                     unitLiteral = literal;
-                unknownCount++;
+                } else {
+                    // more than one unknown literal, not a unit clause
+                    return 0;
                 }
-
-
-
+                unknownCount++;
+            } else if (value == 1 && !isNegated) {
+                // already satisfied, not a unit clause
+                return 0;
+            }
         }
 
         if (unknownCount == 1) {
