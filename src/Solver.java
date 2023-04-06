@@ -69,7 +69,7 @@ public class Solver {
                boolean isNegated = literal < 0;
                int var = isNegated ? -literal : literal;
                int value = assignment[var - 1];
-               if ((value == 1 && !isNegated) || (value == 0 && isNegated)) {
+               if (checkClause(assignment, clause)) {
                    // the clause is satisfied
                    isClauseSatisfied = true;
                    break;
