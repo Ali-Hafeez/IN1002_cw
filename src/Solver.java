@@ -49,15 +49,16 @@ public class Solver {
 
     public boolean checkClauseDatabase(int[] assignment, int[][] clauseDatabase) {
         for (int i = 0; i < clauseDatabase.length; i++) {
-            for (int j = 0; i < clauseDatabase[i].length; j++) {
-               // int[] clause = clauseDatabase[i];
-                int[] clauseArr = new int[]{clauseDatabase[i][j]};
-                if (!checkClause(assignment, clauseArr)) {
+            //for (int j = 0; i < clauseDatabase[i].length; j++) {
+                int[] clause = clauseDatabase[i];
+               // int[] clauseArr = new int[]{clauseDatabase[i][j]};
+                if (!checkClause(assignment, clause)) {
                         return false;
                 }
 
+
             }
-        }
+
         return true;
 
     }
@@ -93,9 +94,7 @@ public class Solver {
     // Part A.4
     // Worst case complexity :  O(1) when the clause contains no unknown literals or it contains exactly one unknown literal that satisfies the clause.
     // Best case complexity : O(v), where v is the number of literals in the clause
-public int returnVal(int value){
-        return value;
-}
+
     public int findUnit(int[] partialAssignment, int[] clause) {
         int unknownCount = 0;
         int unitLiteral = 0;

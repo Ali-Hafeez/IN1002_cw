@@ -4,8 +4,8 @@ public class TestCheckClauseDatabase {
     @Test
     public void TestCheckClauseDatabaseTrue(){
         Solver solver = new Solver();
-        int[] assignment = new int[]{0,1,-1,-1,1,1,-1,-1,1,1};
-        int[][] clauseDatabase = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
+        int[] assignment = new int[] {0,1,1,1,1,1,1};
+        int[][] clauseDatabase = new int[][]{{1,-2},{-1,-2,3},{2}};
         boolean result = solver.checkClauseDatabase(assignment, clauseDatabase);
 
         Assert.assertTrue(result);
@@ -14,7 +14,7 @@ public class TestCheckClauseDatabase {
     public void TestCheckClauseDatabaseFalse(){
         Solver solver = new Solver();
         int[] assignment = new int[]{0,0,-1,-1,0,0,-1,-1,0};
-        int[][] clauseDatabase = new int[][]{{1,2,3},{4,5,6},{7,8,9}};
+        int[][] clauseDatabase = new int[][] {{1,-2},{-1,-2,3},{2}};
         boolean result = solver.checkClauseDatabase(assignment, clauseDatabase);
         Assert.assertFalse(result);
     }

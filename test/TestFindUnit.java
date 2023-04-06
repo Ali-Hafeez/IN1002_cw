@@ -5,8 +5,8 @@ public class TestFindUnit {
     @Test
     public void testFindUnitUnitLiteral() {
         Solver solver = new Solver();
-        int[] partialAssignment = {0,-1,0,-1};
-        int[] clause = {1,-2,3,-4};
+        int[] partialAssignment = {0,1,0,-1,0,1,0,-1};
+        int[] clause = {-2,3,-4};
         int result = solver.findUnit(partialAssignment, clause);
         int expectedOutput = result;
         System.out.println(result);
