@@ -47,12 +47,12 @@ public class Solver {
     // Best case complexity : O(cl * maxClauseLength), where cl is the number of clauses in the database
     //                        and maxClauseLength is the length of the longest clause
 
-    public boolean checkClauseDatabase(int[] assignment, int[][] clauseDatabase) {
+   /* public boolean checkClauseDatabase(int[] assignment, int[][] clauseDatabase) {
         for (int i = 0; i < clauseDatabase.length; i++) {
             //for (int j = 0; i < clauseDatabase[i].length; j++) {
                 int[] clause = clauseDatabase[i];
                // int[] clauseArr = new int[]{clauseDatabase[i][j]};
-                if (!checkClause(assignment, clause)) {
+                if (checkClause(assignment, clause)) {
                         return false;
                 }
 
@@ -61,7 +61,29 @@ public class Solver {
 
         return true;
 
-    }
+    }*/
+   public boolean checkClauseDatabase(int[] assignment, int[][] clauseDatabase) {
+       for (int[] clause : clauseDatabase) {
+           boolean isClauseSatisfied = false;
+           for (int literal : clause) {
+               boolean isNegated = literal < 0;
+               int var = isNegated ? -literal : literal;
+               int value = assignment[var - 1];
+               if ((value == 1 && !isNegated) || (value == 0 && isNegated)) {
+                   // the clause is satisfied
+                   isClauseSatisfied = true;
+                   break;
+               }
+           }
+           if (!isClauseSatisfied) {
+               // the clause is unsatisfied, so the assignment does not satisfy all clauses
+               return false;
+           }
+       }
+       // all clauses are satisfied
+       return true;
+   }
+
 
     // Part A.3
 // Worst case complexity :  O(1) when the clause contains only one literal, and it is satisfied by the partial assignment

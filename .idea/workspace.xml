@@ -41,11 +41,11 @@
     &quot;last_opened_file_path&quot;: &quot;C:/Users/alimu/Documents/GitHub/IN1002_cw&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.TestFindUnit.testFindUnitUnitLiteral">
-    <configuration name="TestCheckClause" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestCheckClauseDatabase.TestCheckClauseDatabaseTrue">
+    <configuration name="TestCheckClauseDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IN1002_cw" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckClause" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -92,11 +92,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestFindUnit.testFindUnitUnitLiteral" />
-        <item itemvalue="JUnit.TestFindUnit" />
         <item itemvalue="JUnit.TestCheckClauseDatabase.TestCheckClauseDatabaseTrue" />
         <item itemvalue="JUnit.TestCheckClauseDatabase.TestCheckClauseDatabaseFalse" />
-        <item itemvalue="JUnit.TestCheckClause" />
+        <item itemvalue="JUnit.TestCheckClauseDatabase" />
+        <item itemvalue="JUnit.TestFindUnit.testFindUnitUnitLiteral" />
+        <item itemvalue="JUnit.TestFindUnit" />
       </list>
     </recent_temporary>
   </component>
@@ -111,7 +111,7 @@
       <workItem from="1679490431966" duration="5294000" />
       <workItem from="1680268345459" duration="3886000" />
       <workItem from="1680710705243" duration="4326000" />
-      <workItem from="1680781518553" duration="3300000" />
+      <workItem from="1680781518553" duration="4310000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1679498260932</created>
@@ -157,6 +157,11 @@
           <url>file://$PROJECT_DIR$/test/TestFindUnit.java</url>
           <line>3</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/TestCheckClauseDatabase.java</url>
+          <line>2</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
