@@ -47,21 +47,7 @@ public class Solver {
     // Best case complexity : O(cl * maxClauseLength), where cl is the number of clauses in the database
     //                        and maxClauseLength is the length of the longest clause
 
-   /* public boolean checkClauseDatabase(int[] assignment, int[][] clauseDatabase) {
-        for (int i = 0; i < clauseDatabase.length; i++) {
-            //for (int j = 0; i < clauseDatabase[i].length; j++) {
-                int[] clause = clauseDatabase[i];
-               // int[] clauseArr = new int[]{clauseDatabase[i][j]};
-                if (checkClause(assignment, clause)) {
-                        return false;
-                }
 
-
-            }
-
-        return true;
-
-    }*/
    public boolean checkClauseDatabase(int[] assignment, int[][] clauseDatabase) {
        for (int[] clause : clauseDatabase) {
            boolean isClauseSatisfied = false;
@@ -70,19 +56,19 @@ public class Solver {
                int var = isNegated ? -literal : literal;
                int value = assignment[var - 1];
                if ((value == 1 && !isNegated) || (value == 0 && isNegated)){
-               //if (checkClause(assignment, clause)) {
+              // if (checkClause(assignment, clause)) {
                    // the clause is satisfied
                    isClauseSatisfied = true;
                    break;
                }
            }
-           if (!isClauseSatisfied) {
+           if (isClauseSatisfied) {
                // the clause is unsatisfied, so the assignment does not satisfy all clauses
-               return false;
+               return true;
            }
        }
        // all clauses are satisfied
-       return true;
+       return false;
    }
 
 
@@ -152,47 +138,14 @@ public class Solver {
     // Part B
     // I think this can solve ????#
 
-<<<<<<< Updated upstream
+
 
 
 
     //data/220019969-clause-database-01.cnf
-    int[] checkSat(int[][] clauseDatabase) {
-       int[] assignment = new int[clauseDatabase[0].length +1];
-        Arrays.fill(assignment, -1); // initialize all variables as unassigned
-        return checkSatHelper(clauseDatabase, assignment, 0);
-    }
-
-    private int[] checkSatHelper(int[][] clauseDatabase, int[] assignment, int index) {
-        if (index == assignment.length) {
-            if (checkClauseDatabase(assignment, clauseDatabase)) {
-                return assignment;
-            } else {
-                return null;
-            }
-        }
-
-        int literal = index + 1; // variables are numbered starting from 1
-        int[] trueAssignment = assignment.clone();
-        trueAssignment[index] = 1;
-        int[] trueResult = checkSatHelper(clauseDatabase, trueAssignment, index + 1);
-        if (trueResult != null) {
-            return trueResult;
-        }
-
-        int[] falseAssignment = assignment.clone();
-        falseAssignment[index] = 0;
-        int[] falseResult = checkSatHelper(clauseDatabase, falseAssignment, index + 1);
-        if (falseResult != null) {
-            return falseResult;
-        }
-
-        return null;
-    }
 
 
 
-=======
 
     //data/220019969-clause-database-01.cnf
     int[] checkSat(int[][] clauseDatabase) {
@@ -238,7 +191,7 @@ public class Solver {
         }
         return true;
     }
->>>>>>> Stashed changes
+
 
     private int getNumVariables(int[][] clauseDatabase) {
         int numVariables = 0;

@@ -46,64 +46,50 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.TestCheckSat">
+  <component name="RunManager" selected="JUnit.TestCheckSat.testFile15">
+    <configuration name="TestCheckClauseDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IN1002_cw" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestCheckClauseDatabase.TestCheckClauseDatabaseFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IN1002_cw" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
+      <option name="METHOD_NAME" value="TestCheckClauseDatabaseFalse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestCheckClauseDatabase.TestCheckClauseDatabaseTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IN1002_cw" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
+      <option name="METHOD_NAME" value="TestCheckClauseDatabaseTrue" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestCheckSat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IN1002_cw" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
       <option name="TEST_OBJECT" value="class" />
-<<<<<<< Updated upstream
-=======
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestCheckSat.TestCheckSatEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestCheckSat.testFile15" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IN1002_cw" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
-      <option name="METHOD_NAME" value="TestCheckSatEmpty" />
-      <option name="TEST_OBJECT" value="method" />
->>>>>>> Stashed changes
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestCheckSat.testFile1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IN1002_cw" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
-      <option name="METHOD_NAME" value="testFile1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestCheckSat.testFile2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IN1002_cw" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
-      <option name="METHOD_NAME" value="testFile2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestCheckSat.testFile3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IN1002_cw" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
-      <option name="METHOD_NAME" value="testFile3" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestCheckSat.testFile4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IN1002_cw" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
-      <option name="METHOD_NAME" value="testFile4" />
+      <option name="METHOD_NAME" value="testFile15" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -111,15 +97,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestCheckSat.testFile15" />
         <item itemvalue="JUnit.TestCheckSat" />
-        <item itemvalue="JUnit.TestCheckSat.testFile3" />
-        <item itemvalue="JUnit.TestCheckSat.testFile2" />
-<<<<<<< Updated upstream
-        <item itemvalue="JUnit.TestCheckSat.testFile1" />
-        <item itemvalue="JUnit.TestCheckSat.testFile4" />
-=======
-        <item itemvalue="JUnit.TestCheckSat.TestCheckSatEmpty" />
->>>>>>> Stashed changes
+        <item itemvalue="JUnit.TestCheckClauseDatabase.TestCheckClauseDatabaseFalse" />
+        <item itemvalue="JUnit.TestCheckClauseDatabase" />
+        <item itemvalue="JUnit.TestCheckClauseDatabase.TestCheckClauseDatabaseTrue" />
       </list>
     </recent_temporary>
   </component>
