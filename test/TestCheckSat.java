@@ -8,54 +8,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class TestCheckSat {
-    /*
-    @Test
-    public void TestCheckSat() {
-        Solver solver = new Solver();
-
-        int[][] clauseDatabase = new int[][]{
-                { 2, 1, 0},
-                {1, 1 ,0},
-                {-2,1 ,0}
-        };
-        int[] result = solver.checkSat(clauseDatabase);
-        switch (Arrays.toString(result)) {
-            case "[0, 1, 1]":
-                // code to execute if arr matches the first array
-                assert true;
-                break;
-            case "[0, 1, 0]":
-                // code to execute if arr matches the second array
-                assert true;
-                break;
-            case "[0, 0, 0]":
-                // code to execute if arr matches the third array
-                assert true;
-                break;
-            case "[0, 0, 1]":
-                // code to execute if arr matches the third array
-                assert true;
-                break;
-            default:
-                assert false;
-                // code to execute if arr doesn't match any of the arrays
-                break;
-        }
 
 
-    }*/
-    @Test
-    public void TestCheckSatEmpty(){
-        Solver solver = new Solver();
-        int[][] clauseDatabase = new int [][]{};
-        Object result = solver.checkSat(clauseDatabase);
-
-        System.out.println(result);
-
-        if (result == null){
-            assert true;
-        }
-    }
     @Test
     public void testFile1(){
         Solver solver = new Solver();
