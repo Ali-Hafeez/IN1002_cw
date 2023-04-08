@@ -52,6 +52,19 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
       <option name="TEST_OBJECT" value="class" />
+<<<<<<< Updated upstream
+=======
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestCheckSat.TestCheckSatEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IN1002_cw" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
+      <option name="METHOD_NAME" value="TestCheckSatEmpty" />
+      <option name="TEST_OBJECT" value="method" />
+>>>>>>> Stashed changes
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -101,8 +114,12 @@
         <item itemvalue="JUnit.TestCheckSat" />
         <item itemvalue="JUnit.TestCheckSat.testFile3" />
         <item itemvalue="JUnit.TestCheckSat.testFile2" />
+<<<<<<< Updated upstream
         <item itemvalue="JUnit.TestCheckSat.testFile1" />
         <item itemvalue="JUnit.TestCheckSat.testFile4" />
+=======
+        <item itemvalue="JUnit.TestCheckSat.TestCheckSatEmpty" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>

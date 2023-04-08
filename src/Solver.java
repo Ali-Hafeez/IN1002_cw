@@ -152,6 +152,7 @@ public class Solver {
     // Part B
     // I think this can solve ????#
 
+<<<<<<< Updated upstream
 
 
 
@@ -191,7 +192,66 @@ public class Solver {
 
 
 
+=======
 
+    //data/220019969-clause-database-01.cnf
+    int[] checkSat(int[][] clauseDatabase) {
+        int numVariables = getNumVariables(clauseDatabase);
+        int[] assignment = new int[numVariables + 1];
+        return dpll(clauseDatabase, assignment, 1) ? assignment : null;
+    }
+
+    private boolean dpll(int[][] clauseDatabase, int[] assignment, int variable) {
+        if (variable == assignment.length) {
+            return isAssignmentSatisfiable(clauseDatabase, assignment);
+        }
+
+        assignment[variable] = 1;
+        if (dpll(clauseDatabase, assignment, variable + 1)) {
+            return true;
+        }
+
+        assignment[variable] = -1;
+        return dpll(clauseDatabase, assignment, variable + 1);
+    }
+
+    private boolean isAssignmentSatisfiable(int[][] clauseDatabase, int[] assignment) {
+        for (int[] clause : clauseDatabase) {
+            boolean isClauseSatisfied = false;
+            for (int literal : clause) {
+                int variable = Math.abs(literal);
+                if (assignment[variable] == 0) {
+                    continue;
+                }
+                if (literal > 0 && assignment[variable] == 1) {
+                    isClauseSatisfied = true;
+                    break;
+                }
+                if (literal < 0 && assignment[variable] == -1) {
+                    isClauseSatisfied = true;
+                    break;
+                }
+            }
+            if (!isClauseSatisfied) {
+                return false;
+            }
+        }
+        return true;
+    }
+>>>>>>> Stashed changes
+
+    private int getNumVariables(int[][] clauseDatabase) {
+        int numVariables = 0;
+        for (int[] clause : clauseDatabase) {
+            for (int literal : clause) {
+                int variable = Math.abs(literal);
+                if (variable > numVariables) {
+                    numVariables = variable;
+                }
+            }
+        }
+        return numVariables;
+    }
 
 
 
