@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1ed5ff50-8f16-45ec-b067-59f5244cad2e" name="Changes" comment="a">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/TestCheckSat.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/TestCheckSat.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,36 +44,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager" selected="JUnit.TestCheckSat.testFile15">
-    <configuration name="TestCheckClauseDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IN1002_cw" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestCheckClauseDatabase.TestCheckClauseDatabaseFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IN1002_cw" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
-      <option name="METHOD_NAME" value="TestCheckClauseDatabaseFalse" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestCheckClauseDatabase.TestCheckClauseDatabaseTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IN1002_cw" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
-      <option name="METHOD_NAME" value="TestCheckClauseDatabaseTrue" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.TestCheckSat">
     <configuration name="TestCheckSat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IN1002_cw" />
       <option name="PACKAGE_NAME" value="" />
@@ -85,11 +54,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestCheckSat.testFile15" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestCheckSat.testFile10" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IN1002_cw" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
-      <option name="METHOD_NAME" value="testFile15" />
+      <option name="METHOD_NAME" value="testFile10" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestCheckSat.testFile2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IN1002_cw" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
+      <option name="METHOD_NAME" value="testFile2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestCheckSat.testFile7" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IN1002_cw" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
+      <option name="METHOD_NAME" value="testFile7" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestCheckSat.testFile8" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IN1002_cw" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
+      <option name="METHOD_NAME" value="testFile8" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -97,11 +96,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestCheckSat.testFile15" />
         <item itemvalue="JUnit.TestCheckSat" />
-        <item itemvalue="JUnit.TestCheckClauseDatabase.TestCheckClauseDatabaseFalse" />
-        <item itemvalue="JUnit.TestCheckClauseDatabase" />
-        <item itemvalue="JUnit.TestCheckClauseDatabase.TestCheckClauseDatabaseTrue" />
+        <item itemvalue="JUnit.TestCheckSat.testFile2" />
+        <item itemvalue="JUnit.TestCheckSat.testFile7" />
+        <item itemvalue="JUnit.TestCheckSat.testFile8" />
+        <item itemvalue="JUnit.TestCheckSat.testFile10" />
       </list>
     </recent_temporary>
   </component>
@@ -206,6 +205,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Solver.java</url>
+          <line>232</line>
+          <properties class="Solver" method="main">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
