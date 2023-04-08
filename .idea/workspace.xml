@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ed5ff50-8f16-45ec-b067-59f5244cad2e" name="Changes" comment="a" />
+    <list default="true" id="1ed5ff50-8f16-45ec-b067-59f5244cad2e" name="Changes" comment="a">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Solver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Solver.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,74 +31,78 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/alimu/Documents/GitHub/SAT-DPLL"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/alimu/Documents/GitHub/SAT-DPLL&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="JUnit.TestCheckClauseDatabase">
-    <configuration name="TestCheckClauseDatabase" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+}</component>
+  <component name="RunManager" selected="JUnit.TestCheckSat.testFile3">
+    <configuration name="TestCheckSat.TestCheckSat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IN1002_cw" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestCheckClauseDatabase.TestCheckClauseDatabaseFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="IN1002_cw" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
-      <option name="METHOD_NAME" value="TestCheckClauseDatabaseFalse" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
+      <option name="METHOD_NAME" value="TestCheckSat" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestCheckClauseDatabase.TestCheckClauseDatabaseTrue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestCheckSat.TestCheckSatEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IN1002_cw" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckClauseDatabase" />
-      <option name="METHOD_NAME" value="TestCheckClauseDatabaseTrue" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
+      <option name="METHOD_NAME" value="TestCheckSatEmpty" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestCheckClausePartial" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestCheckSat.testFile1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IN1002_cw" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCheckClausePartial" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
+      <option name="METHOD_NAME" value="testFile1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestFindUnit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestCheckSat.testFile2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="IN1002_cw" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestFindUnit" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
+      <option name="METHOD_NAME" value="testFile2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestCheckSat.testFile3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="IN1002_cw" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestCheckSat" />
+      <option name="METHOD_NAME" value="testFile3" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestCheckClauseDatabase" />
-        <item itemvalue="JUnit.TestCheckClauseDatabase.TestCheckClauseDatabaseTrue" />
-        <item itemvalue="JUnit.TestCheckClauseDatabase.TestCheckClauseDatabaseFalse" />
-        <item itemvalue="JUnit.TestFindUnit" />
-        <item itemvalue="JUnit.TestCheckClausePartial" />
+        <item itemvalue="JUnit.TestCheckSat.testFile3" />
+        <item itemvalue="JUnit.TestCheckSat.testFile1" />
+        <item itemvalue="JUnit.TestCheckSat.testFile2" />
+        <item itemvalue="JUnit.TestCheckSat.TestCheckSatEmpty" />
+        <item itemvalue="JUnit.TestCheckSat.TestCheckSat" />
       </list>
     </recent_temporary>
   </component>
@@ -111,6 +118,7 @@
       <workItem from="1680268345459" duration="3886000" />
       <workItem from="1680710705243" duration="4326000" />
       <workItem from="1680781518553" duration="7974000" />
+      <workItem from="1680933807736" duration="9460000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1679498260932</created>
@@ -143,26 +151,18 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/test/TestCheckClauseDatabase.java</url>
-          <line>13</line>
-          <properties class="TestCheckClauseDatabase" method="TestCheckClauseDatabaseFalse">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/test/TestFindUnit.java</url>
           <line>3</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/TestCheckClauseDatabase.java</url>
-          <line>2</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="Solver" memberName="numberOfVariables" />
+        <PinnedItemInfo parentTag="Solver" memberName="clauseDatabase" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
