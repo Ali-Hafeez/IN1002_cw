@@ -1,339 +1,273 @@
-private static int[] analyzeConflict(int[][] cnf, int[] model) {
-    int[] conflictClause = new int[model.length];
-    int conflictLiteral = model[model.length-1]; // the literal that caused the conflict
-
-    // find all literals assigned true in the same level as the conflict literal
-    Set<Integer> trueLiterals = new HashSet<>();
-    for (int i = model.length-2; i >= 0; i--) {
-        if (Math.abs(model[i]) == Math.abs(conflictLiteral)) {
-            break; // reached the level of the conflict literal
-        }
-        if (model[i] > 0) {
-            trueLiterals.add(model[i]);
-        }
-    }
-
-    // create the conflict clause from the true literals and the negation of the conflict literal
-    int i = 0;
-    for (int literal : trueLiterals) {
-        conflictClause[i++] = -literal;
-    }
-    conflictClause[i] = -conflictLiteral;
-
-    // add the conflict clause to the clause database
-    int[][] newCnf = new int[cnf.length+1][];
-    for (int j = 0; j < cnf.length; j++) {
-        newCnf[j] = cnf[j];
-    }
-    newCnf[cnf.length] = conflictClause;
-
-    // return the new clause database
-    return newCnf;
-}
-
-private static int[] backtrack(int[][] cnf, int[] model) {
-    int lastDecision = -1;
-
-    // find the most recent decision level with unassigned literals
-    for (int i = model.length-2; i >= 0; i--) {
-        if (model[i] != 0) {
-            lastDecision = i;
-            break;
-        }
-    }
-
-    // negate the last decision literal and add it to the model as a new decision
-    int negatedLiteral = -model[lastDecision];
-    model[lastDecision] = negatedLiteral;
-
-    // return the updated model
-    return model;
-}
-private static int[] dpll(int[][] cnf, int[] model) {
-    while (true) {
-        boolean allClausesTrue = true;
-        for (int[] clause : cnf) {
-            boolean anyLiteralsTrue = false;
-            boolean allLiteralsFalse = true;
+private boolean isAssignmentSatisfiable(int[][] clauseDatabase, int[] assignment) {
+        for (int[] clause : clauseDatabase) {
+            boolean isClauseSatisfied = false;
             for (int literal : clause) {
                 int variable = Math.abs(literal);
-                boolean isNegated = (literal < 0);
-                boolean isAssigned = (model[variable] != 0);
-                boolean isTrue = (model[variable] == (isNegated ? -1 : 1));
-                if (isAssigned && isTrue) {
-                    anyLiteralsTrue = true;
-                    break;
-                } else if (isAssigned && !isTrue) {
-                    // Literal is false, move to next literal
-                } else {
-                    allLiteralsFalse = false;
+                if (assignment[variable] == 0) {
+                    continue;
                 }
-            }
-            if (anyLiteralsTrue) {
-                // Clause is true, move to next clause
-            } else if (allLiteralsFalse) {
-                // Clause is false, backtrack
-                int[] conflictClause = clause;
-                int[] conflictVariables = analyzeConflict(cnf, model);
-                if (conflictVariables == null) {
-                    return null;
-                } else {
-                    backtrack(cnf, model, conflictVariables);
+                if (literal > 0 && assignment[variable] == 1) {
+                    isClauseSatisfied = true;
                     break;
                 }
-            } else {
-                allClausesTrue = false;
-                break;
+                if (literal < 0 && assignment[variable] == -1) {
+                    isClauseSatisfied = true;
+                    break;
+                }
+            }
+            if (!isClauseSatisfied) {
+                return false;
             }
         }
-        if (allClausesTrue) {
-            return model;
-        }
-    }
-}
-
-public static boolean checkSat(int[][] cnf) {
-    int[] model = new int[cnf.length]; // current partial assignment
-    Set<Integer> literals = new HashSet<>(); // unassigned literals
-    for (int[] clause : cnf) {
-        for (int literal : clause) {
-            literals.add(Math.abs(literal));
-        }
-    }
-    return dpll(cnf, model, literals);
+        return true;
     }
 
-    public int[] checkSat(int[][] clauseDatabase) {
-        int[] partialAssignment = new int[clauseDatabase[0].length];
-        int result = dpll(partialAssignment, clauseDatabase);
-        if (result != -1) {
-            return partialAssignment;
-        }
-        result = cdcl(partialAssignment, clauseDatabase);
-        if (result != -1) {
-            return partialAssignment;
-        }
-        return null;
-    }
 
-    private int dpll(int[] partialAssignment, int[][] clauseDatabase) {
-        int unassignedVar = findUnassignedVar(partialAssignment);
-        if (unassignedVar == -1) {
-            return checkClauseDatabase(partialAssignment, clauseDatabase) ? 1 : -1;
-        }
-        partialAssignment[unassignedVar] = 1;
-        int result = dpll(partialAssignment, clauseDatabase);
-        if (result != -1) {
-            return result;
-        }
-        partialAssignment[unassignedVar] = 0;
-        result = dpll(partialAssignment, clauseDatabase);
-        if (result != -1) {
-            return result;
-        }
-        partialAssignment[unassignedVar] = -1;
-        return -1;
-    }
 
-    private int cdcl(int[] partialAssignment, int[][] clauseDatabase) {
-        int numConflicts = 0;
-        List<int[]> learnedClauses = new ArrayList<>();
-        while (numConflicts < MAX_CONFLICTS) {
-            int conflictVar = getConflictVar(partialAssignment, clauseDatabase);
-            if (conflictVar == -1) {
-                return -1;
-            }
-            int[] conflictClause = getConflictClause(partialAssignment, clauseDatabase, conflictVar);
-            learnedClauses.add(conflictClause);
-            clauseDatabase = addLearnedClauses(clauseDatabase, learnedClauses);
-            int result = dpll(partialAssignment, clauseDatabase);
-            if (result != -1) {
-                return result;
-            }
-            numConflicts++;
-        }
-        return -1;
-    }
 
-    private int findUnassignedVar(int[] partialAssignment) {
-        for (int i = 0; i < partialAssignment.length; i++) {
-            if (partialAssignment[i] == -1) {
-                return i;
+
+
+
+
+
+
+
+
+
+
+
+
+
+    private int[][] pureLiteralRule(int[][] clauseDatabase, int[] assignment) {
+        boolean[] keepClauses = new boolean[clauseDatabase.length];
+        Arrays.fill(keepClauses, true);
+
+
+        for (int i = 1; i < assignment.length; i++) {
+            if (assignment[i] == 0) {
+                boolean positive = false;
+                boolean negative = false;
+                for (int[] clause : clauseDatabase) {
+                    for (int literal : clause) {
+                        if (Math.abs(literal) == i) {
+                            if (literal > 0) {
+                                positive = true;
+                            } else {
+                                negative = true;
+                            }
+                        }
+                        if (positive && negative) {
+                            break;
+                        }
+                    }
+                    if (positive && negative) {
+                        break;
+                    }
+                }
+                if (positive ^ negative) {
+                    int polarity = positive ? 1 : -1;
+                    assignment[i] = polarity;
+                    for (int j = 0; j < clauseDatabase.length; j++) {
+                        if (keepClauses[j]) {
+                            int[] clause = clauseDatabase[j];
+                            for (int k = 0; k < clause.length; k++) {
+                                if (Math.abs(clause[k]) == i && clause[k] != polarity) {
+                                    keepClauses[j] = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
-        return -1;
-    }
 
-public int[] checkSat(int[][] clauseDatabase) {
-    int[] partialAssignment = new int[clauseDatabase[0].length];
-    Arrays.fill(partialAssignment, -1); // initialize all variables as unassigned
-    return checkSatRecursive(partialAssignment, clauseDatabase, 0);
-}
-
-private int[] checkSatRecursive(int[] partialAssignment, int[][] clauseDatabase, int variableIndex) {
-    // check if the current assignment satisfies all clauses
-    if (checkClauseDatabase(partialAssignment, clauseDatabase)) {
-        return partialAssignment;
-    }
-
-    // check if there is a contradiction in the current assignment
-    for (int[] clause : clauseDatabase) {
-        int result = checkClausePartial(partialAssignment, clause);
-        if (result == -1) {
-            // the clause is unsatisfied, so the assignment is a contradiction
-            return null;
-        } else if (result == 1) {
-            // the clause is already satisfied, no need to do anything
-        } else {
-            // the clause is not yet satisfied and has a single unassigned literal,
-            // so we can assign that literal to satisfy the clause
-            int unitLiteral = findUnit(partialAssignment, clause);
-            partialAssignment[Math.abs(unitLiteral) - 1] = unitLiteral > 0 ? 1 : 0;
-            return checkSatRecursive(partialAssignment, clauseDatabase, variableIndex);
+        int numClauses = 0;
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (keepClauses[i]) numClauses++;
         }
+        int[][] newClauseDatabase = new int[numClauses][];
+        int index = 0;
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (keepClauses[i]) {
+                newClauseDatabase[index] = clauseDatabase[i];
+                index++;
+            }
+        }
+        return newClauseDatabase;
+    }
+    public int[][] preprocess(int[][] clauseDatabase,int[]assignment) {
+        boolean[] keepClauses = new boolean[clauseDatabase.length]; // initialize a boolean array to keep track of which clauses to keep
+        Arrays.fill(keepClauses, true); // set all values to true initially
+
+        // remove redundant clauses
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (!keepClauses[i]) continue; // if the clause has already been marked for removal, skip it
+            for (int j = i+1; j < clauseDatabase.length; j++) {
+                if (!keepClauses[j]) continue; // if the clause has already been marked for removal, skip it
+                if (Arrays.equals(clauseDatabase[i], clauseDatabase[j])) { // if two clauses are identical, mark one for removal
+                    keepClauses[j] = false;
+                }
+            }
+        }
+
+        // remove unit clauses
+        boolean unitClauseFound = true;
+        while (unitClauseFound) {
+            unitClauseFound = false;
+            for (int i = 0; i < clauseDatabase.length; i++) {
+                if (!keepClauses[i]) continue; // if the clause has already been marked for removal, skip it
+                if (clauseDatabase[i].length == 1) { // if a clause has length 1, it is a unit clause
+                    int lit = clauseDatabase[i][0];
+                    if (assignment[Math.abs(lit)] == 0) { // if the variable in the unit clause has not been assigned yet, assign it
+                        assignment[Math.abs(lit)] = lit > 0 ? 1 : -1;
+                        unitClauseFound = true;
+                        keepClauses[i] = false; // mark the unit clause for removal
+                    } else if (assignment[Math.abs(lit)] != (lit > 0 ? 1 : -1)) { // if the variable has already been assigned but not to the value in the unit clause, the clause is unsatisfiable
+                        return null;
+                    }
+                }
+            }
+        }
+
+        // count the number of remaining clauses and create a new clause database with only those clauses
+        int numClauses = 0;
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (keepClauses[i]) numClauses++;
+        }
+        int[][] newClauseDatabase = new int[numClauses][];
+        int index = 0;
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (keepClauses[i]) {
+                newClauseDatabase[index] = clauseDatabase[i];
+                index++;
+            }
+        }
+        return newClauseDatabase;
     }
 
-    // try to assign a variable to satisfy the remaining clauses
-    for (int i = variableIndex; i < partialAssignment.length; i++) {
-        if (partialAssignment[i] == -1) {
-            // try assigning true
-            partialAssignment[i] = 1;
-            int[] result = checkSatRecursive(partialAssignment, clauseDatabase, i + 1);
-            if (result != null) {
-                return result;
+
+
+    //data/220019969-clause-database-01.cnf
+    int[] checkSat(int[][] clauseDatabase) {
+        int numVariables = getNumVariables(clauseDatabase);
+        int[] assignment = new int[numVariables + 1];
+        int[][] newdata = pureLiteralRule(preprocess(clauseDatabase,assignment),assignment);
+        return dpll(newdata, assignment,1)? assignment : null;
+    }
+
+    private boolean dpll(int[][] clauseDatabase, int[] assignment, int variable) {
+        if (variable == assignment.length) {
+            return isAssignmentSatisfiable(clauseDatabase, assignment);
+        }
+
+        assignment[variable] = 1;
+        if (dpll(clauseDatabase, assignment, variable + 1)) {
+            return true;
+        }
+
+        assignment[variable] = -1;
+        return dpll(clauseDatabase, assignment, variable + 1);
+    }
+
+
+    private int getNumVariables(int[][] clauseDatabase) {
+        int numVariables = 0;
+        for (int[] clause : clauseDatabase) {
+            for (int literal : clause) {
+                int variable = Math.abs(literal);
+                if (variable > numVariables) {
+                    numVariables = variable;
+                }
+            }
+        }
+        return numVariables;
+    }
+    private boolean isAssignmentSatisfiable(int[][] clauseDatabase, int[] assignment) {
+        boolean[] keepClauses = new boolean[clauseDatabase.length];
+        Arrays.fill(keepClauses, true);
+        int[] watchedLiteral = new int[clauseDatabase.length];
+        Arrays.fill(watchedLiteral, -1);
+
+        while (true) {
+            boolean modified = false;
+
+            // check if any clause is empty
+            for (int i = 0; i < clauseDatabase.length; i++) {
+                if (!keepClauses[i]) continue; // if the clause has already been marked for removal, skip it
+                int trueLiteralCount = 0;
+                int unassignedLiteral = -1;
+                for (int j = 0; j < clauseDatabase[i].length; j++) {
+                    int literal = clauseDatabase[i][j];
+                    if (assignment[Math.abs(literal)] == 0) { // if the literal is unassigned
+                        unassignedLiteral = literal;
+                    } else if (assignment[Math.abs(literal)] == (literal > 0 ? 1 : -1)) { // if the literal is true
+                        trueLiteralCount++;
+                        if (watchedLiteral[i] == -1) {
+                            watchedLiteral[i] = literal;
+                        } else if (watchedLiteral[i] != -1 && literal != watchedLiteral[i]) {
+                            watchedLiteral[i] = literal;
+                        }
+                        if (trueLiteralCount == 2) {
+                            break;
+                        }
+                    }
+                }
+                if (trueLiteralCount == 0 && unassignedLiteral == -1) { // if the clause is empty
+                    return false;
+                } else if (trueLiteralCount == 1 && unassignedLiteral != -1) { // if the clause has a unit literal
+                    assignment[Math.abs(unassignedLiteral)] = unassignedLiteral > 0 ? 1 : -1;
+                    watchedLiteral[i] = unassignedLiteral;
+                    modified = true;
+                } else if (trueLiteralCount == 2 && unassignedLiteral != -1) {
+                    int otherLiteral = watchedLiteral[i] == clauseDatabase[i][0] ? clauseDatabase[i][1] : clauseDatabase[i][0];
+                    if (assignment[Math.abs(otherLiteral)] == 0) {
+                        assignment[Math.abs(unassignedLiteral)] = unassignedLiteral > 0 ? 1 : -1;
+                        watchedLiteral[i] = unassignedLiteral;
+                        modified = true;
+                    } else if (assignment[Math.abs(otherLiteral)] != (otherLiteral > 0 ? 1 : -1)) {
+                        int[] tempClause = new int[2];
+                        tempClause[0] = unassignedLiteral;
+                        tempClause[1] = otherLiteral;
+                        clauseDatabase[clauseDatabase.length - 1] = tempClause;
+                        keepClauses[clauseDatabase.length - 1] = true;
+                        watchedLiteral[clauseDatabase.length - 1] = otherLiteral;
+                        modified = true;
+                    }
+                }
             }
 
-            // try assigning false
-            partialAssignment[i] = 0;
-            result = checkSatRecursive(partialAssignment, clauseDatabase, i + 1);
-            if (result != null) {
-                return result;
+            // remove redundant clauses
+            for (int i = 0; i < clauseDatabase.length; i++) {
+                if (!keepClauses[i]) continue; // if the clause has already been marked for removal, skip it
+                for (int j = i+1; j < clauseDatabase.length; j++) {
+                    if (!keepClauses[j]) continue; // if the clause has already been marked for removal, skip it
+                    if (Arrays.equals(clauseDatabase[i], clauseDatabase[j])) { // if the two clauses are the same
+                        keepClauses[j] = false;
+                        modified = true;
+                    } else if (watchedLiteral[i] == -clauseDatabase[j][0] && watchedLiteral[j] == -clauseDatabase[i][0]) { // if the two clauses can be resolved
+                        int[] newClause = new int[clauseDatabase[i].length + clauseDatabase[j].length - 2];
+                        int index = 0;
+                        for (int k = 0; k < clauseDatabase[i].length; k++) {
+                            if (clauseDatabase[i][k] != -watchedLiteral[i]) {
+                                newClause[index++] = clauseDatabase[i][k];
+                            }
+                        }
+                        for (int k = 0; k < clauseDatabase[j].length; k++) {
+                            if (clauseDatabase[j][k] != -watchedLiteral[j]) {
+                                newClause[index++] = clauseDatabase[j][k];
+                            }
+                        }
+                        clauseDatabase[clauseDatabase.length - 1] = newClause;
+                        keepClauses[clauseDatabase.length - 1] = true;
+                        watchedLiteral[clauseDatabase.length - 1] = newClause[0];
+                        modified = true;
+                    }
+                }
             }
-
-            // restore the variable's original unassigned state
-            partialAssignment[i] = -1;
-
-            // we've tried all possibilities for this variable, so no satisfying assignment exists
-            return null;
+            if (!modified) {
+                return true;
+            }
         }
     }
-
-    // all variables are assigned, but the clause database is still unsatisfied
-    return null;
-}
-
-
-
-
-
-
-
-
-
-
-public int[] checkSat(int[][] clauseDatabase) {
-    int[] partialAssignment = new int[clauseDatabase[0].length];
-    int result = dpll(partialAssignment, clauseDatabase);
-    if (result != -1) {
-        return partialAssignment;
-    }
-    result = cdcl(partialAssignment, clauseDatabase);
-    if (result != -1) {
-        return partialAssignment;
-    }
-    return null;
-}
-
-private int dpll(int[] partialAssignment, int[][] clauseDatabase) {
-    int unassignedVar = findUnassignedVar(partialAssignment);
-    if (unassignedVar == -1) {
-        return checkClauseDatabase(partialAssignment, clauseDatabase) ? 1 : -1;
-    }
-    partialAssignment[unassignedVar] = 1;
-    int result = dpll(partialAssignment, clauseDatabase);
-    if (result != -1) {
-        return result;
-    }
-    partialAssignment[unassignedVar] = 0;
-    result = dpll(partialAssignment, clauseDatabase);
-    if (result != -1) {
-        return result;
-    }
-    partialAssignment[unassignedVar] = -1;
-    return -1;
-}
-
-private int cdcl(int[] partialAssignment, int[][] clauseDatabase) {
-    int numConflicts = 0;
-    List<int[]> learnedClauses = new ArrayList<>();
-    while (numConflicts < MAX_CONFLICTS) {
-        int conflictVar = getConflictVar(partialAssignment, clauseDatabase);
-        if (conflictVar == -1) {
-            return -1;
-        }
-        int[] conflictClause = getConflictClause(partialAssignment, clauseDatabase, conflictVar);
-        learnedClauses.add(conflictClause);
-        clauseDatabase = addLearnedClauses(clauseDatabase, learnedClauses);
-        int result = dpll(partialAssignment, clauseDatabase);
-        if (result != -1) {
-            return result;
-        }
-        numConflicts++;
-    }
-    return -1;
-}
-
-private int findUnassignedVar(int[] partialAssignment) {
-    for (int i = 0; i < partialAssignment.length; i++) {
-        if (partialAssignment[i] == -1) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-
-
-public int[] checkSat(int[][] clauseDatabase) {
-    int[] assignment = new int[clauseDatabase[0].length + 1]; // initialize all variables to 0
-    boolean isSat = dpll(assignment, clauseDatabase);
-    if (isSat) {
-        return assignment;
-    } else {
-        return null;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

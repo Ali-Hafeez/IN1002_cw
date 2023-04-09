@@ -144,6 +144,128 @@ public class Solver {
 
     //data/220019969-clause-database-01.cnf
 
+    private int[][] pureLiteralRule(int[][] clauseDatabase, int[] assignment) {
+        boolean[] keepClauses = new boolean[clauseDatabase.length];
+        Arrays.fill(keepClauses, true);
+
+
+        for (int i = 1; i < assignment.length; i++) {
+            if (assignment[i] == 0) {
+                boolean positive = false;
+                boolean negative = false;
+                for (int[] clause : clauseDatabase) {
+                    for (int literal : clause) {
+                        if (Math.abs(literal) == i) {
+                            if (literal > 0) {
+                                positive = true;
+                            } else {
+                                negative = true;
+                            }
+                        }
+                        if (positive && negative) {
+                            break;
+                        }
+                    }
+                    if (positive && negative) {
+                        break;
+                    }
+                }
+                if (positive ^ negative) {
+                    int polarity = positive ? 1 : -1;
+                    assignment[i] = polarity;
+                    for (int j = 0; j < clauseDatabase.length; j++) {
+                        if (keepClauses[j]) {
+                            int[] clause = clauseDatabase[j];
+                            for (int k = 0; k < clause.length; k++) {
+                                if (Math.abs(clause[k]) == i && clause[k] != polarity) {
+                                    keepClauses[j] = false;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        int numClauses = 0;
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (keepClauses[i]) numClauses++;
+        }
+        int[][] newClauseDatabase = new int[numClauses][];
+        int index = 0;
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (keepClauses[i]) {
+                newClauseDatabase[index] = clauseDatabase[i];
+                index++;
+            }
+        }
+        return newClauseDatabase;
+    }
+    public int[][] preprocess(int[][] clauseDatabase,int[]assignment) {
+        boolean[] keepClauses = new boolean[clauseDatabase.length]; // initialize a boolean array to keep track of which clauses to keep
+        Arrays.fill(keepClauses, true); // set all values to true initially
+
+        // remove redundant clauses
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (!keepClauses[i]) continue; // if the clause has already been marked for removal, skip it
+            for (int j = i+1; j < clauseDatabase.length; j++) {
+                if (!keepClauses[j]) continue; // if the clause has already been marked for removal, skip it
+                if (Arrays.equals(clauseDatabase[i], clauseDatabase[j])) { // if two clauses are identical, mark one for removal
+                    keepClauses[j] = false;
+                }
+            }
+        }
+
+        // remove unit clauses
+        boolean unitClauseFound = true;
+        while (unitClauseFound) {
+            unitClauseFound = false;
+            for (int i = 0; i < clauseDatabase.length; i++) {
+                if (!keepClauses[i]) continue; // if the clause has already been marked for removal, skip it
+                if (clauseDatabase[i].length == 1) { // if a clause has length 1, it is a unit clause
+                    int lit = clauseDatabase[i][0];
+                    if (assignment[Math.abs(lit)] == 0) { // if the variable in the unit clause has not been assigned yet, assign it
+                        assignment[Math.abs(lit)] = lit > 0 ? 1 : -1;
+                        unitClauseFound = true;
+                        keepClauses[i] = false; // mark the unit clause for removal
+                    } else if (assignment[Math.abs(lit)] != (lit > 0 ? 1 : -1)) { // if the variable has already been assigned but not to the value in the unit clause, the clause is unsatisfiable
+                        return null;
+                    }
+                }
+            }
+        }
+
+        // count the number of remaining clauses and create a new clause database with only those clauses
+        int numClauses = 0;
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (keepClauses[i]) numClauses++;
+        }
+        int[][] newClauseDatabase = new int[numClauses][];
+        int index = 0;
+        for (int i = 0; i < clauseDatabase.length; i++) {
+            if (keepClauses[i]) {
+                newClauseDatabase[index] = clauseDatabase[i];
+                index++;
+            }
+        }
+        return newClauseDatabase;
+    }
+    private boolean clauseEquals(int[] c1, int[] c2) {
+        if (c1.length != c2.length) {
+            return false;
+        }
+
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+
+        for (int i = 0; i < c1.length; i++) {
+            set1.add(c1[i]);
+            set2.add(c2[i]);
+        }
+
+        return set1.equals(set2);
+    }
 
 
 
@@ -151,21 +273,39 @@ public class Solver {
     int[] checkSat(int[][] clauseDatabase) {
         int numVariables = getNumVariables(clauseDatabase);
         int[] assignment = new int[numVariables + 1];
-        return dpll(clauseDatabase, assignment, 1) ? assignment : null;
+        int[][] processedData;
+        if (numVariables>50){
+
+            processedData = preprocess(clauseDatabase,assignment);
+
+        }
+        else{
+            processedData = preprocess(pureLiteralRule(clauseDatabase,assignment),assignment);
+
+
+        }
+
+        return dpll(processedData, assignment,1,0)? assignment : null;
     }
 
-    private boolean dpll(int[][] clauseDatabase, int[] assignment, int variable) {
+    private boolean dpll(int[][] clauseDatabase, int[] assignment, int variable, int callCount) {
+        if (callCount > 100) {
+            return false;
+        }
         if (variable == assignment.length) {
             return isAssignmentSatisfiable(clauseDatabase, assignment);
         }
 
         assignment[variable] = 1;
-        if (dpll(clauseDatabase, assignment, variable + 1)) {
+        if (dpll(clauseDatabase, assignment, variable + 1, callCount + 1)) {
             return true;
         }
-
         assignment[variable] = -1;
-        return dpll(clauseDatabase, assignment, variable + 1);
+        if (dpll(clauseDatabase, assignment, variable + 1, callCount + 1)) {
+            return true;
+        }
+        assignment[variable] = 0;
+        return false;
     }
 
     private boolean isAssignmentSatisfiable(int[][] clauseDatabase, int[] assignment) {
@@ -205,6 +345,7 @@ public class Solver {
         }
         return numVariables;
     }
+
 
 
 
